@@ -1,11 +1,12 @@
-import {LitElement, html, css} from 'lit';
-
+import { LitElement, html, css } from 'lit';
+import { Router } from '@vaadin/router';
 import './ww-header.js';
 import './ww-financial-advisor.js';
+import './ww-insights.js';
+import './ww-recommendations.js';
 import './ww-footer.js';
 
 class WwApp extends LitElement {
-
     static styles = css`
         :host {
             display: flex;
@@ -21,15 +22,94 @@ class WwApp extends LitElement {
             justify-content: flex-start;
             height: 100%;
         }
-    `;    
-    
+        .content {
+            flex: 1;
+            overflow-y: auto;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            gap: 5rem;
+        }
+        a {
+            text-decoration: none;
+            color: var(--lumo-contrast-50);
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color:#B2A06A;
+        }
+
+        a.active {
+            background-color: rgb(40, 56, 89);
+            color: white;
+        }
+    `;
+
+    static properties = {
+        currentPath: { type: String }
+    };
+
+    constructor() {
+        super();
+        this.currentPath = window.location.pathname;
+    }
+
+    firstUpdated() {
+        const router = new Router(this.shadowRoot.querySelector('.content'));
+
+        router.setRoutes([
+            { path: '/', component: 'ww-financial-advisor' },
+            { path: '/insights', component: 'ww-insights' },
+            { path: '/recommendations', component: 'ww-recommendations' },
+            { path: '(.*)', component: 'ww-financial-advisor' } // Default route / 404
+        ]);
+
+        // Listen for route changes
+        window.addEventListener('vaadin-router-location-changed', () => {
+            this.currentPath = window.location.pathname;
+        });
+    }
+
+    _navigate(e) {
+        e.preventDefault();
+        const path = e.target.getAttribute('href');
+        Router.go(path);
+        this.currentPath = path;
+    }
+
     render() {
-        return html`<div class="center">
-                        <ww-header></ww-header>
-                        <ww-financial-advisor></ww-financial-advisor>
-                    </div>
-                    <ww-footer></ww-footer>
-          `;
+        return html`
+            <div class="center">
+                <ww-header></ww-header>
+                <nav>
+                    <a href="/" 
+                       @click=${this._navigate} 
+                       class="${this.currentPath === '/' ? 'active' : ''}">
+                        Financial Advisor
+                    </a>
+                    <a href="/insights" 
+                       @click=${this._navigate} 
+                       class="${this.currentPath === '/insights' ? 'active' : ''}">
+                        Insights
+                    </a>
+                    <a href="/recommendations" 
+                       @click=${this._navigate} 
+                       class="${this.currentPath === '/recommendations' ? 'active' : ''}">
+                        Recommendations
+                    </a>
+                </nav>
+                <div class="content"></div>
+            </div>
+            <ww-footer></ww-footer>
+        `;
     }
 }
+
 customElements.define('ww-app', WwApp);

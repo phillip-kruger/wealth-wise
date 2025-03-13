@@ -6,7 +6,6 @@ import '@vaadin/progress-bar';
 import '@vaadin/button';
 import '@vaadin/text-field';
 import '@qomponent/qui-bubble';
-import './ww-section-header.js';
 import MarkdownIt from 'markdown-it';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
@@ -80,7 +79,7 @@ class WwFinancialAdvisor extends LitElement {
     }
 
     render(){
-        return html`<ww-section-header title="Financial Advisor"></ww-section-header>
+        return html`
         ${this._renderChatMessages()}
         ${this._renderInput()}
         `;

@@ -4,7 +4,6 @@
     <groupId>com.wealthwise</groupId>
     <artifactId>financial-advisor</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-
     <properties>
         <compiler-plugin.version>3.13.0</compiler-plugin.version>
         <maven.compiler.release>21</maven.compiler.release>
@@ -12,11 +11,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>3.19.2</quarkus.platform.version>
+        <quarkus.platform.version>3.19.3</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.2</surefire-plugin.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -28,7 +26,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -43,7 +40,6 @@
             <artifactId>quarkus-langchain4j-openai</artifactId>
             <version>0.25.0</version>
         </dependency>
-        
         <!--  For the UI  -->
         <dependency>
             <groupId>io.quarkiverse.web-bundler</groupId>
@@ -51,21 +47,40 @@
             <version>1.8.1</version>
         </dependency>
         <dependency>
+            <groupId>org.mvnpm</groupId>
+            <artifactId>lit</artifactId>
+            <version>3.2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.mvnpm.at.mvnpm</groupId>
             <artifactId>vaadin-webcomponents</artifactId>
-            <scope>runtime</scope>
+            <version>24.6.6</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mvnpm.at.qomponent</groupId>
             <artifactId>qui-bubble</artifactId>
             <version>1.0.0</version>
-            <scope>runtime</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mvnpm</groupId>
             <artifactId>markdown-it</artifactId>
             <version>14.1.0</version>
-            <scope>runtime</scope>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mvnpm.at.vaadin</groupId>
+            <artifactId>router</artifactId>
+            <version>2.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mvnpm</groupId>
+            <artifactId>path-to-regexp</artifactId>
+            <version>6.3.0</version>
+            <scope>provided</scope>
         </dependency>
         <!--  For the tests -->
         <dependency>
@@ -74,7 +89,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -131,7 +145,6 @@
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <id>native</id>
