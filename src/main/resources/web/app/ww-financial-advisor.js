@@ -2,7 +2,6 @@ import {LitElement, html, css} from 'lit';
 import '@vaadin/icon';
 import '@vaadin/vaadin-lumo-styles/vaadin-iconset.js';
 import '@vaadin/icons';
-import '@vaadin/progress-bar';
 import '@vaadin/button';
 import '@vaadin/text-field';
 import '@qomponent/qui-bubble';
@@ -68,14 +67,21 @@ class WwFinancialAdvisor extends LitElement {
     connectedCallback() {
         super.connectedCallback();
 
-        this.ws = new WebSocket('ws://' + location.host + '/financial-advisor');
+        this.ws = new WebSocket('ws://' + location.host + '/wealth-wise');
         this.ws.onmessage = (event) => {
             let response = JSON.parse(event.data).message;
             const htmlContent = this.md.render(response);
 
-            this._replaceLastMessage({type: 'advisor', message: htmlContent});
+            this._replaceLastMessage({owner: 'advisor', message: htmlContent});
             this.shadowRoot.querySelector('#input')?.focus();    
         };
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        if (this.ws) {
+            this.ws.close();
+        }
     }
 
     render(){
@@ -103,15 +109,15 @@ class WwFinancialAdvisor extends LitElement {
     _renderChatMessages(){
         if(this._chatMessages.length > 0){
             return html`<div class="chat-messages">${this._chatMessages.map(message => {
-                if(message.type === 'user'){
+                if(message.owner === 'user'){
                     return html`<qui-bubble class="user-message" name="You" icon="/static/user.png">
                         <p>${message.message}</p>
                     </qui-bubble>`;
-                }else if(message.type === 'advisor'){
+                }else if(message.owner === 'advisor'){
                     return html`<qui-bubble class="advisor-message" name="Advisor" icon="/static/logo.png">
                         <span class="advisor-message-inner">${unsafeHTML(message.message)}</span>
                     </qui-bubble>`;
-                } else if(message.type === 'loading'){
+                } else if(message.owner === 'loading'){
                     return html`<qui-bubble class="advisor-message" name="Advisor" icon="/static/logo.png" typing></qui-bubble>`;
                 }
 
@@ -120,7 +126,7 @@ class WwFinancialAdvisor extends LitElement {
     }
 
     _ask(){
-        this._addToMessages({type: 'user', message: this._question}, {type: 'loading'});
+        this._addToMessages({owner: 'user', message: this._question}, {owner: 'loading'});
         this.ws.send(JSON.stringify({type: 'CHAT_MESSAGE', message: this._question}));
         this._question = '';
     }

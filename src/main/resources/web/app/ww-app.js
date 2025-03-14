@@ -2,8 +2,7 @@ import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
 import './ww-header.js';
 import './ww-financial-advisor.js';
-import './ww-insights.js';
-import './ww-recommendations.js';
+import './ww-investment-recommendations.js';
 import './ww-footer.js';
 
 class WwApp extends LitElement {
@@ -66,8 +65,7 @@ class WwApp extends LitElement {
 
         router.setRoutes([
             { path: '/', component: 'ww-financial-advisor' },
-            { path: '/insights', component: 'ww-insights' },
-            { path: '/recommendations', component: 'ww-recommendations' },
+            { path: '/investment-recommendations', component: 'ww-investment-recommendations' },
             { path: '(.*)', component: 'ww-financial-advisor' } // Default route / 404
         ]);
 
@@ -94,15 +92,10 @@ class WwApp extends LitElement {
                        class="${this.currentPath === '/' ? 'active' : ''}">
                         Financial Advisor
                     </a>
-                    <a href="/insights" 
+                    <a href="/investment-recommendations" 
                        @click=${this._navigate} 
-                       class="${this.currentPath === '/insights' ? 'active' : ''}">
-                        Insights
-                    </a>
-                    <a href="/recommendations" 
-                       @click=${this._navigate} 
-                       class="${this.currentPath === '/recommendations' ? 'active' : ''}">
-                        Recommendations
+                       class="${this.currentPath === '/investment-recommendations' ? 'active' : ''}">
+                        Investment Recommendations
                     </a>
                 </nav>
                 <div class="content"></div>

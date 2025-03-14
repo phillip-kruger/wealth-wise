@@ -40,6 +40,11 @@
             <artifactId>quarkus-langchain4j-openai</artifactId>
             <version>0.25.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-pgvector</artifactId>
+            <version>0.25.0</version>
+        </dependency>
         <!--  For the UI  -->
         <dependency>
             <groupId>io.quarkiverse.web-bundler</groupId>
