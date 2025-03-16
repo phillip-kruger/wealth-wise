@@ -1,8 +1,60 @@
-# financial-advisor
+# Wealth Wise
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Setting Up Your OpenAI API Key
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+To run this application, you need to set your OpenAI API key as an environment variable.
+
+### Linux & macOS (Bash/Zsh)
+Open a terminal and run:
+
+```sh
+export OPENAI_API_KEY="your-api-key-here"
+```
+
+To make this change persistent, add the line above to your `~/.bashrc`, `~/.bash_profile`, or `~/.zshrc` file:
+
+```sh
+echo 'export OPENAI_API_KEY="your-api-key-here"' >> ~/.bashrc
+# or for zsh users
+echo 'export OPENAI_API_KEY="your-api-key-here"' >> ~/.zshrc
+```
+
+Then, restart your terminal or run:
+
+```sh
+source ~/.bashrc  # or source ~/.zshrc for zsh users
+```
+
+### Windows (Command Prompt)
+Run the following command in Command Prompt:
+
+```cmd
+set OPENAI_API_KEY=your-api-key-here
+```
+
+Note: This sets the variable only for the current session.
+
+To set it permanently, use:
+
+```cmd
+setx OPENAI_API_KEY "your-api-key-here"
+```
+
+### Windows (PowerShell)
+Run:
+
+```powershell
+$env:OPENAI_API_KEY="your-api-key-here"
+```
+
+For a permanent change, add the following to your PowerShell profile:
+
+```powershell
+[System.Environment]::SetEnvironmentVariable("OPENAI_API_KEY", "your-api-key-here", "User")
+```
+
+After setting the variable, restart your terminal for changes to take effect.
+
 
 ## Running the application in dev mode
 
@@ -59,11 +111,16 @@ If you want to learn more about building native executables, please consult <htt
 - WebSockets Next ([guide](https://quarkus.io/guides/websockets-next-reference)): Implementation of the WebSocket API with enhanced efficiency and usability
 - Web Bundler ([guide](https://docs.quarkiverse.io/quarkus-web-bundler/dev/)): Creating full-stack Web Apps is fast and simple with this extension. Zero config bundling for your web-app scripts (js, jsx, ts, tsx), dependencies (jquery, react, htmx, ...) and styles (css, scss, sass).
 
-## Provided Code
+## Use Cases for Demo
 
-### Web Bundler
+### RAG-Enhanced Market Insights
+**User asks:** "How should I invest $5,000?"
 
-This is a tiny app `web-bundler.html` to get started with the Web Bundler. Once the quarkus app is started visit the generated page at http://localhost:8080/web-bundler.html
+### Tax Advisory with Up-to-Date Information (RAG)
+**User asks:** "What are the latest tax deductions?"
 
-[Related guide section...](https://docs.quarkiverse.io/quarkus-web-bundler/dev/)
+### Investment Portfolio Builder
+**User selects:** Conservative, Balanced, or Aggressive risk level.
 
+### History (DB)
+All of the above should show in the History

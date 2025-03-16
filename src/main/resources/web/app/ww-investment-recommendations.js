@@ -8,6 +8,12 @@ import '@vaadin/progress-bar';
 
 class WwInvestmentRecommendations extends LitElement {
     static styles = css`
+        :host {
+            height: 100%;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
         .investment-recommendations{
             display: flex;
             flex-direction: row;
@@ -30,7 +36,9 @@ class WwInvestmentRecommendations extends LitElement {
         .recommendations-response{
             width: 88%;
             height: 100%;
-            overflow-y: auto;
+        }
+        vaadin-progress-bar{
+            width: 80%;
         }
     `;
     

@@ -16,14 +16,14 @@ class WwFinancialAdvisor extends LitElement {
             flex-direction: column;
             align-items: center;
             height: 100%;
-            overflow: hidden;
             padding-bottom: 20px;
         }
         .input {
             display: flex;
             gap: 10px;
             align-items: baseline;
-            width: 80vw;
+            align-self: center;
+            width: 100%;
             justify-content: space-around;
         }
         .input vaadin-text-field {
@@ -34,8 +34,6 @@ class WwFinancialAdvisor extends LitElement {
         }
         
         .chat-messages {
-            width: 80%;
-            overflow: scroll;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -43,12 +41,19 @@ class WwFinancialAdvisor extends LitElement {
         .advisor-message {
             --chat-bubble-bg:#A5C882;
         }
-        .chat-messages{
+        .user-message{
             --chat-bubble-bg:#5AB1BB;
         }
 
         .advisor-message-inner{
             width: 100%;
+        }
+        .chat-container{
+            display: flex;
+            flex-direction: column; 
+            height: 100%;
+            width: 80%;
+            gap: 10px;
         }
     `;
     
@@ -86,8 +91,10 @@ class WwFinancialAdvisor extends LitElement {
 
     render(){
         return html`
-        ${this._renderChatMessages()}
-        ${this._renderInput()}
+            <div class="chat-container">
+                ${this._renderChatMessages()}
+                ${this._renderInput()}
+            </div>
         `;
     }
     

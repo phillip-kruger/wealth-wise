@@ -21,10 +21,7 @@ class WwApp extends LitElement {
             justify-content: flex-start;
             height: 100%;
         }
-        .content {
-            flex: 1;
-            overflow-y: auto;
-        }
+        
         nav {
             display: flex;
             justify-content: center;
@@ -49,6 +46,12 @@ class WwApp extends LitElement {
             background-color: rgb(40, 56, 89);
             color: white;
         }
+        .content{
+            overflow: scroll;
+            max-height: 100%;
+            height: 100%;
+            margin-bottom: 20px;
+        }
     `;
 
     static properties = {
@@ -66,6 +69,7 @@ class WwApp extends LitElement {
         router.setRoutes([
             { path: '/', component: 'ww-financial-advisor' },
             { path: '/investment-recommendations', component: 'ww-investment-recommendations' },
+            { path: '/history', component: 'ww-history' },
             { path: '(.*)', component: 'ww-financial-advisor' } // Default route / 404
         ]);
 
@@ -96,6 +100,11 @@ class WwApp extends LitElement {
                        @click=${this._navigate} 
                        class="${this.currentPath === '/investment-recommendations' ? 'active' : ''}">
                         Investment Recommendations
+                    </a>
+                    <a href="/history" 
+                       @click=${this._navigate} 
+                       class="${this.currentPath === '/history' ? 'active' : ''}">
+                        History
                     </a>
                 </nav>
                 <div class="content"></div>
