@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import com.wealthwise.advice.FinancialAdviseService;
 import com.wealthwise.history.History;
 import com.wealthwise.investment.InvestmentService;
-import com.wealthwise.investment.RiskLevel;
 import com.wealthwise.taxdection.TaxDeductionsService;
 import io.quarkus.websockets.next.OnTextMessage;
 import io.quarkus.websockets.next.WebSocket;
@@ -48,7 +47,7 @@ public class WealthWiseSocket {
                 return new ChatMessage(MessageType.CHAT_MESSAGE, response);
             } 
         }else if(message.type() == MessageType.INVESTMENT_MESSAGE){
-            String response = investmentService.chat(RiskLevel.valueOf(String.valueOf(message.message())));
+            String response = investmentService.recommend(InvestmentService.RiskLevel.valueOf(String.valueOf(message.message())));
             return new ChatMessage(MessageType.INVESTMENT_MESSAGE, response);
         }else if(message.type() == MessageType.HISTORY_MESSAGE){
             List<History> h = History.findAllByOrderByTimestampDesc();

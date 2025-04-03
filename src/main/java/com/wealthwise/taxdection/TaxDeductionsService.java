@@ -1,7 +1,5 @@
 package com.wealthwise.taxdection;
 
-import com.wealthwise.WealthWiseSystem;
-
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
@@ -10,7 +8,7 @@ import io.quarkiverse.langchain4j.RegisterAiService;
 public interface TaxDeductionsService {
 
 
-    @SystemMessage(WealthWiseSystem.SYSTEM_MESSAGE)
+    @SystemMessage(SYSTEM_MESSAGE)
     @UserMessage(USER_MESSAGE)
     String chat(String question);
 
@@ -18,4 +16,9 @@ public interface TaxDeductionsService {
         Question: {question}
     """;
     
+    public static final String SYSTEM_MESSAGE = """
+        You are a professional financial advisor specializing in Australian financial markets. 
+        You are given a question and you need to answer it based on your knowledge and experience.
+        Your reply should be in a conversational tone and should be easy to understand. The format of your reply should be in valid Markdown that can be rendered in a web page.
+    """;
 }

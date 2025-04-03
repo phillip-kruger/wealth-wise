@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.document.parser.TextDocumentParser;

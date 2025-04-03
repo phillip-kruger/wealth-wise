@@ -11,7 +11,7 @@ import jakarta.enterprise.event.Observes;
 @ApplicationScoped
 public class SPARouting {
 
-    private static final String[] PATH_PREFIXES = { "/investment-recommendations/", "/wealth-wise/", "/history/" };
+    private static final String[] PATH_PREFIXES = { "/api/","/investment-recommendations/", "/wealth-wise/", "/history/" };
     private static final Predicate<String> FILE_NAME_PREDICATE = Pattern.compile(".+\\.[a-zA-Z0-9]+$").asMatchPredicate();
 
     public void init(@Observes Router router) {
