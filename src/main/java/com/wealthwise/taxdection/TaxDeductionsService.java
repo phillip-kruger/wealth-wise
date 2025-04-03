@@ -3,8 +3,10 @@ package com.wealthwise.taxdection;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
+import jakarta.enterprise.context.SessionScoped;
 
 @RegisterAiService(retrievalAugmentor = TaxDeductionsAugmentor.class)
+@SessionScoped
 public interface TaxDeductionsService {
 
 
