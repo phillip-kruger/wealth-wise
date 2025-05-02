@@ -34,11 +34,25 @@ public class TaxDeductionsIngestor {
     @Inject
     EmbeddingModel embeddingModel;
 
-    @ConfigProperty(name = "quarkus.profile")
-    String profile;
+    @ConfigProperty(name = "wealthwise.ingest", defaultValue = "true")
+    boolean ingest;
+    
+    @ConfigProperty(name = "quarkus.langchain4j.openai.base-url")
+    String baseUrl;
+    
+    @ConfigProperty(name = "quarkus.langchain4j.openai.chat-model.model-name")
+    String model;
     
     public void ingestTaxDeductions(@Observes StartupEvent event) {
-        if(!profile.equalsIgnoreCase("maas")){
+        
+        Log.infof("==========================================================================");
+        Log.infof("Base URL: " + baseUrl);
+        Log.infof("Model: " + model);
+        Log.infof("==========================================================================");
+        
+        
+        
+        if(ingest){
             Log.infof("Ingesting documents...");
             List<Document> documents = FileSystemDocumentLoader.loadDocuments(new File("src/main/resources/documents/").toPath(),
                     new TextDocumentParser());
