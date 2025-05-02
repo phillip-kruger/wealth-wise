@@ -8,15 +8,15 @@ To run this application, you need to set your OpenAI API key as an environment v
 Open a terminal and run:
 
 ```sh
-export OPENAI_API_KEY="your-api-key-here"
+export QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="your-api-key-here"
 ```
 
 To make this change persistent, add the line above to your `~/.bashrc`, `~/.bash_profile`, or `~/.zshrc` file:
 
 ```sh
-echo 'export OPENAI_API_KEY="your-api-key-here"' >> ~/.bashrc
+echo 'export QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="your-api-key-here"' >> ~/.bashrc
 # or for zsh users
-echo 'export OPENAI_API_KEY="your-api-key-here"' >> ~/.zshrc
+echo 'export QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="your-api-key-here"' >> ~/.zshrc
 ```
 
 Then, restart your terminal or run:
@@ -29,7 +29,7 @@ source ~/.bashrc  # or source ~/.zshrc for zsh users
 Run the following command in Command Prompt:
 
 ```cmd
-set OPENAI_API_KEY=your-api-key-here
+set QUARKUS_LANGCHAIN4J_OPENAI_API_KEY=your-api-key-here
 ```
 
 Note: This sets the variable only for the current session.
@@ -37,20 +37,20 @@ Note: This sets the variable only for the current session.
 To set it permanently, use:
 
 ```cmd
-setx OPENAI_API_KEY "your-api-key-here"
+setx QUARKUS_LANGCHAIN4J_OPENAI_API_KEY "your-api-key-here"
 ```
 
 ### Windows (PowerShell)
 Run:
 
 ```powershell
-$env:OPENAI_API_KEY="your-api-key-here"
+$env:QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="your-api-key-here"
 ```
 
 For a permanent change, add the following to your PowerShell profile:
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable("OPENAI_API_KEY", "your-api-key-here", "User")
+[System.Environment]::SetEnvironmentVariable("QUARKUS_LANGCHAIN4J_OPENAI_API_KEY", "your-api-key-here", "User")
 ```
 
 After setting the variable, restart your terminal for changes to take effect.
